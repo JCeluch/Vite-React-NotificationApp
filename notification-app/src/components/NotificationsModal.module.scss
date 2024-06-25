@@ -1,0 +1,62 @@
+// src/components/NotificationsModal.module.scss
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.header .active {
+  font-weight: bold;
+}
+
+.markAllAsRead {
+  color: blue;
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.unread {
+  background-color: #f9f9f9;
+}
+
+.read {
+  background-color: #fff;
+}
