@@ -1,22 +1,25 @@
 // src/App.tsx
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styles from './App.module.scss';
 import Navbar from './components/Navbar';
+import RequestPage from './pages/RequestPage';
+import OnHoldPage from './pages/OnHoldPage';
+import NewFeaturePage from './pages/NewFeaturePage';
+import { NotificationInterface } from './components/Notification';
 
-interface Notification {
-  id: number;
-  message: string;
-  read: boolean;
-}
-
-const mockedNotifications: Notification[] = [
-  { id: 1, message: 'New message received', read: false },
-  { id: 2, message: 'Server maintenance at 3 PM', read: true },
-  { id: 3, message: 'Meeting at 10 AM', read: false }
+const mockedNotifications: NotificationInterface[] = [
+  { id: 1, message: 'You have a new request', read: false, type: 'request' },
+  { id: 2, message: 'Status changed to on hold', read: true, type: 'on_hold' },
+  { id: 3, message: 'New feature avaliable', read: false, type: 'new_feature' }
 ]
 
 const App: React.FC = () => {
-  const [notifications, setNotifications] = useState<Notification[]>(mockedNotifications);
+  const [notifications, setNotifications] = useState<NotificationInterface[]>(mockedNotifications);
+
+  useEffect(() => {
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+  }, [notifications]);
 
   const markAllAsRead = () => {
     setNotifications(prevNotifications => {
@@ -27,14 +30,32 @@ const App: React.FC = () => {
     });
   }
 
+  const markAsRead = (id: number) => {
+    setNotifications(prevNotifications =>
+      prevNotifications.map(notification =>
+        notification.id === id ? {...notification, read: true} : notification
+      )
+    );
+  };
+
   return (
-    <div className={styles.container}>
-      <Navbar 
-        notifications={notifications}
-        markAllAsRead={markAllAsRead}
-      />
-      <h1 className={styles.title}>Hello, Vite, TS and SCSS!</h1>
-    </div>
+    <Router>
+      <div className={styles.container}>
+        <Navbar 
+          notifications={notifications}
+          markAllAsRead={markAllAsRead}
+          markAsRead={markAsRead}
+        />
+        <Routes>
+          <Route path='/' element={
+            <div className={styles.title}>Hello, React Vite, TS and SCSS!</div>
+          }/>
+          <Route path='/request' element={<RequestPage />} />
+          <Route path='/on_hold' element={<OnHoldPage />} />
+          <Route path='/new_feature' element={<NewFeaturePage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

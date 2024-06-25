@@ -2,31 +2,33 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import styles from './NotificationsModal.module.scss';
-
-interface Notification {
-  id: number;
-  message: string;
-  read: boolean;
-}
+import Notification, {NotificationInterface} from './Notification';
 
 interface NotificationsModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  notifications: Notification[];
+  notifications: NotificationInterface[];
   markAllAsRead: () => void;
+  markAsRead: (id: number) => void;
 }
 
 const NotificationsModal: React.FC<NotificationsModalProps> = ({
   isOpen,
   onRequestClose,
   notifications,
-  markAllAsRead
+  markAllAsRead,
+  markAsRead
 }) => {
   const [view, setView] = useState<'all' | 'unread'>('all');
 
   const filteredNotifications = view === 'all'
     ? notifications
     : notifications.filter(notification => !notification.read);
+
+  const onMarkAsRead = (id: number, blueDot: boolean) => {
+    markAsRead(id);
+    !blueDot && onRequestClose();
+  }
 
   return (
     <Modal
@@ -42,9 +44,14 @@ const NotificationsModal: React.FC<NotificationsModalProps> = ({
       </div>
       <div className={styles.notificationsList}>
         {filteredNotifications.map(notification => (
-          <div key={notification.id} className={`${styles.notification} ${notification.read ? styles.read : styles.unread}`}>
-            {notification.message}
-          </div>
+          <Notification
+            key={notification.id}
+            id={notification.id}
+            message={notification.message}
+            read={notification.read}
+            type={notification.type}
+            markAsRead={onMarkAsRead}
+          />
         ))}
       </div>
     </Modal>
