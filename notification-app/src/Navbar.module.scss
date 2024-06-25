@@ -1,0 +1,33 @@
+// src/Navbar.module.scss
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+.notifications {
+  position: relative;
+}
+
+.bellIcon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.counter {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+}
