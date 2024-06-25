@@ -1,0 +1,14 @@
+// src/App.module.scss
+$backgroundColor: #f0f0f0;
+$titleColor: #333;
+
+.container {
+  background-color: $backgroundColor;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  color: $titleColor;
+}
