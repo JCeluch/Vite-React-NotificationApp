@@ -12,3 +12,18 @@ $titleColor: #333;
   font-size: 2rem;
   color: $titleColor;
 }
+
+.clearButton {
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background-color: #0056b3;
+}

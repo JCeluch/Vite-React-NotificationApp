@@ -28,10 +28,10 @@ const Notification: React.FC<NotificationProps> = ({ id, message, read, type, ma
 
   return (
     <div className={`${styles.notification} ${read ? styles.read : styles.unread}`}>
-      <Link to={getLink()} onClick={() => markAsRead(id, false)}>
+      <Link to={getLink()} state={{message}} onClick={() => markAsRead(id, false)}>
         {message}
       </Link>
-      <button className={`${styles.markUnreadButton}`} onClick={() => read ? markAsUnread(id) : markAsRead(id, true)}>
+      <button data-testid="mark-as-read-button" className={`${styles.markUnreadButton}`} onClick={() => read ? markAsUnread(id) : markAsRead(id, true)}>
         {read ? <FaRegDotCircle /> : <FaDotCircle />}
       </button>
     </div>

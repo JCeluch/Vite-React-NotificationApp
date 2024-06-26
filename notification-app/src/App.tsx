@@ -6,7 +6,29 @@ import Navbar from './components/Navbar';
 import RequestPage from './pages/RequestPage';
 import OnHoldPage from './pages/OnHoldPage';
 import NewFeaturePage from './pages/NewFeaturePage';
-import { NotificationProvider } from './contexts/NotificationContext';
+import { NotificationProvider, useNotifications } from './contexts/NotificationContext';
+
+const MainPage: React.FC = () => {
+  const { clearNotifications, notifications, repopulateNotifications } = useNotifications();
+  
+  React.useEffect(() => {
+    repopulateNotifications();
+  }, [])
+
+  return (
+    <div>
+      <div className={styles.title}> Hello, React App by Vite with Typescript and SCSS Modules!</div>
+      <div className={styles.subtitle}>Devtools</div>
+      <button onClick={repopulateNotifications} className={styles.clearButton} disabled={notifications.length !== 0}>
+        Populate Notifications
+      </button>
+      <button onClick={clearNotifications} className={styles.clearButton} disabled={notifications.length === 0}>
+        Clear Notifications
+      </button>
+
+    </div>
+  )
+}
 
 const App: React.FC = () => {
   return (
@@ -15,9 +37,7 @@ const App: React.FC = () => {
         <div className={styles.container}>
           <Navbar />
           <Routes>
-            <Route path='/' element={
-              <div className={styles.title}>Hello, React Vite, TS and SCSS!</div>
-            }/>
+            <Route path='/' element={<MainPage />}/>
             <Route path='/request' element={<RequestPage />} />
             <Route path='/on_hold' element={<OnHoldPage />} />
             <Route path='/new_feature' element={<NewFeaturePage />} />

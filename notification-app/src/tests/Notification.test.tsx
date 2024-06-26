@@ -1,9 +1,12 @@
 // src/tests/Notification.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Notification from '../components/Notification';
 import { NotificationProvider } from '../contexts/NotificationContext';
 import { describe, test, expect, vi } from 'vitest';
+import RequestPage from '../pages/RequestPage';
+import OnHoldPage from '../pages/OnHoldPage';
+import NewFeaturePage from '../pages/NewFeaturePage';
 
 let id = 1;
 
@@ -15,13 +18,12 @@ const notification = {
 };
 
 describe('Notification Component', () => {
+  const markAsReadMock = vi.fn();
   test('renders notification message', () => {
     render(
       <NotificationProvider>
         <MemoryRouter>
-          <Notification key={id++} markAsRead={function (id: number, blueDot: boolean): void {
-            throw new Error('Function not implemented.');
-          } } {...notification} />
+          <Notification key={id++} markAsRead={markAsReadMock} {...notification} />
         </MemoryRouter>
       </NotificationProvider>
     );
@@ -55,4 +57,25 @@ describe('Notification Component', () => {
     fireEvent.click(markUnreadButton);
     expect(markAsUnreadMock).toHaveBeenCalledTimes(1);
   });
+
+  test('navigates to the correct page on click and marks notification as read', () => {
+    const markAsReadMock = vi.fn();
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <NotificationProvider>
+          <Routes>
+            <Route path="/" element={<Notification id={1} message="Test request message" read={false} type="request" markAsRead={markAsReadMock} />} />
+            <Route path="/request" element={<RequestPage />} />
+          </Routes>
+        </NotificationProvider>
+      </MemoryRouter>
+    );
+  
+    const notificationLink = screen.getByText('Test request message');
+    fireEvent.click(notificationLink);
+  
+    expect(screen.getByText('Request Page')).toBeInTheDocument();
+    expect(screen.getByText('Test request message')).toBeInTheDocument();
+  });
+  
 });
