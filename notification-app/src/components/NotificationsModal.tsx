@@ -31,14 +31,14 @@ const NotificationsModal: React.FC<NotificationsModalProps> = ({
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       className={styles.modal}
-      overlayClassName={styles.overlay}
+      overlayClassName={styles.modalOverlay}
     >
       <div className={styles.header}>
-        <button onClick={() => setView('all')} className={view === 'all' ? styles.active : ''}>All Notifications</button>
-        <button onClick={() => setView('unread')} className={view === 'unread' ? styles.active : ''}>Unread Notifications</button>
-        <button onClick={markAllAsRead} className={styles.markAllAsRead}>Mark all as read</button>
+        <button onClick={() => setView('all')}>All Notifications</button>
+        <button onClick={() => setView('unread')}>Unread Notifications</button>
+        <button onClick={markAllAsRead}>Mark all as read</button>
       </div>
-      <div className={styles.notificationsList}>
+      <div className={styles.content}>
         {filteredNotifications.map(notification => (
           <Notification
             key={notification.id}

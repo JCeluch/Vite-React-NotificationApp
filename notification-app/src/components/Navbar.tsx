@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
           className={styles.notifications}
           onClick={() => setIsModalOpen(!isModalOpen)}
         >
-          <FaBell className={styles.bellIcon}/>
+          <FaBell className={styles.bell}/>
           {unreadCount > 0 && (
             <span className={styles.counter}>{unreadCount}</span>
           )}

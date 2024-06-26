@@ -12,16 +12,17 @@ const MainPage: React.FC = () => {
   const { clearNotifications, notifications, repopulateNotifications } = useNotifications();
 
   return (
-    <div>
-      <div className={styles.title}> Hello, React App by Vite with Typescript and SCSS Modules!</div>
-      <div className={styles.subtitle}>Devtools</div>
-      <button onClick={repopulateNotifications} className={styles.clearButton} disabled={notifications.length !== 0}>
-        Populate Notifications
-      </button>
-      <button onClick={clearNotifications} className={styles.clearButton} disabled={notifications.length === 0}>
-        Clear Notifications
-      </button>
-
+    <div className={styles.home}>
+      <h1> Hello, React App by Vite with Typescript and SCSS Modules!</h1>
+      <h2>Devtools</h2>
+      <div className={styles.buttons}>
+        <button onClick={repopulateNotifications} className={styles.button} disabled={notifications.length !== 0}>
+          Populate Notifications
+        </button>
+        <button onClick={clearNotifications} className={styles.button} disabled={notifications.length === 0}>
+          Clear Notifications
+        </button>
+      </div>
     </div>
   )
 }

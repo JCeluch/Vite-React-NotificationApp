@@ -4,21 +4,28 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #202020;
   color: #fff;
+  height: 56px;
 }
 
 .logo {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .notifications {
   position: relative;
 }
 
-.bellIcon {
-  font-size: 1.5rem;
+.bell {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  position: relative;
   cursor: pointer;
+  
 }
 
 .counter {
@@ -29,7 +36,8 @@
   color: white;
   border-radius: 50%;
   padding: 2px 6px;
-  font-size: 0.8rem;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 a {
