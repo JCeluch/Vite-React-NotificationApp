@@ -1,7 +1,7 @@
 // src/components/NotificationsModal.tsx
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import styles from './NotificationsModal.module.scss';
+import styles from '../styles/NotificationsModal.module.scss';
 import Notification from './Notification';
 import { useNotifications } from '../contexts/NotificationContext';
 
@@ -15,7 +15,7 @@ const NotificationsModal: React.FC<NotificationsModalProps> = ({
   onRequestClose,
 }) => {
   const [view, setView] = useState<'all' | 'unread'>('all');
-  const { notifications, markAllAsRead, markAsRead, markAsUnread } = useNotifications();
+  const { notifications, markAllAsRead, markAsRead } = useNotifications();
 
   const filteredNotifications = view === 'all'
     ? notifications

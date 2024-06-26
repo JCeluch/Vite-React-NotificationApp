@@ -1,6 +1,6 @@
 // src/contexts/NotificationContext.tsx
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import { Notification } from '../types';
+import { Notification } from '../types/types';
 
 interface NotificationContextProps {
   notifications: Notification[];

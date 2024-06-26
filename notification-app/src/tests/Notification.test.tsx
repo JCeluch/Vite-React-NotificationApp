@@ -5,8 +5,6 @@ import Notification from '../components/Notification';
 import { NotificationProvider } from '../contexts/NotificationContext';
 import { describe, test, expect, vi } from 'vitest';
 import RequestPage from '../pages/RequestPage';
-import OnHoldPage from '../pages/OnHoldPage';
-import NewFeaturePage from '../pages/NewFeaturePage';
 
 let id = 1;
 

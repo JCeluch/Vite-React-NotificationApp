@@ -1,7 +1,7 @@
 // src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import styles from './App.module.scss';
+import styles from './styles/App.module.scss';
 import Navbar from './components/Navbar';
 import RequestPage from './pages/RequestPage';
 import OnHoldPage from './pages/OnHoldPage';
@@ -10,10 +10,6 @@ import { NotificationProvider, useNotifications } from './contexts/NotificationC
 
 const MainPage: React.FC = () => {
   const { clearNotifications, notifications, repopulateNotifications } = useNotifications();
-  
-  React.useEffect(() => {
-    repopulateNotifications();
-  }, [])
 
   return (
     <div>

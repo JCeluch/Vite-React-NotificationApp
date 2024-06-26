@@ -1,9 +1,10 @@
 // src/components/Navbar.tsx
 import React, { useState } from "react";
-import styles from './Navbar.module.scss';
+import styles from '../styles/Navbar.module.scss';
 import { FaBell } from 'react-icons/fa';
 import NotificationsModal from "./NotificationsModal";
 import { useNotifications } from "../contexts/NotificationContext";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,7 +15,9 @@ const Navbar: React.FC = () => {
     <>
       <nav className={styles.navbar}>
         <div className={styles.logo}>
-          Notification App
+          <Link to="/">
+            Notification App
+          </Link>
         </div>
         <div 
           className={styles.notifications}

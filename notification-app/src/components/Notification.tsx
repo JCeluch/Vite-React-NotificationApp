@@ -1,9 +1,9 @@
 // src/components/Notification.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Notification.module.scss';
+import styles from '../styles/Notification.module.scss';
 import { FaDotCircle, FaRegDotCircle } from "react-icons/fa";
-import { Notification as NotificationInterface } from '../types';
+import { Notification as NotificationInterface } from '../types/types';
 import { useNotifications } from '../contexts/NotificationContext';
 
 interface NotificationProps extends NotificationInterface {
