@@ -3,20 +3,11 @@ import React, { useState } from "react";
 import styles from './Navbar.module.scss';
 import { FaBell } from 'react-icons/fa';
 import NotificationsModal from "./NotificationsModal";
-import { NotificationInterface } from "./Notification";
+import { useNotifications } from "../contexts/NotificationContext";
 
-interface NavbarProps {
-  notifications: NotificationInterface[];
-  markAllAsRead: () => void;
-  markAsRead: (id: number) => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ 
-  notifications, 
-  markAllAsRead,
-  markAsRead,
-}) => {
+const Navbar: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { notifications } = useNotifications();
   const unreadCount = notifications.filter(notifications => !notifications.read).length;
 
   return (
@@ -38,9 +29,6 @@ const Navbar: React.FC<NavbarProps> = ({
       <NotificationsModal 
         isOpen={isModalOpen} 
         onRequestClose={() => setIsModalOpen(!isModalOpen)} 
-        notifications={notifications} 
-        markAllAsRead={markAllAsRead}        
-        markAsRead={markAsRead}
       />
     </>
   );

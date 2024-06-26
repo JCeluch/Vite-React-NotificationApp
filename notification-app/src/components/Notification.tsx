@@ -3,20 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Notification.module.scss';
 import { FaDotCircle, FaRegDotCircle } from "react-icons/fa";
-
-
-export interface NotificationInterface {
-  id: number;
-  message: string;
-  read: boolean;
-  type: 'request' | 'on_hold' | 'new_feature';
-}
+import { Notification as NotificationInterface } from '../types';
+import { useNotifications } from '../contexts/NotificationContext';
 
 interface NotificationProps extends NotificationInterface {
-  markAsRead: (id: number, blueDot: boolean) => void
+  markAsRead: (id: number, blueDot: boolean) => void;
 }
 
 const Notification: React.FC<NotificationProps> = ({ id, message, read, type, markAsRead }) => {
+  const { markAsUnread } = useNotifications();
+
   const getLink = () => {
     switch (type) {
       case 'request':
@@ -35,7 +31,7 @@ const Notification: React.FC<NotificationProps> = ({ id, message, read, type, ma
       <Link to={getLink()} onClick={() => markAsRead(id, false)}>
         {message}
       </Link>
-      <button className={`${styles.markUnreadButton}`} onClick={() => markAsRead(id, true)}>
+      <button className={`${styles.markUnreadButton}`} onClick={() => read ? markAsUnread(id) : markAsRead(id, true)}>
         {read ? <FaRegDotCircle /> : <FaDotCircle />}
       </button>
     </div>

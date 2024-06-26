@@ -2,24 +2,20 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import styles from './NotificationsModal.module.scss';
-import Notification, {NotificationInterface} from './Notification';
+import Notification from './Notification';
+import { useNotifications } from '../contexts/NotificationContext';
 
 interface NotificationsModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  notifications: NotificationInterface[];
-  markAllAsRead: () => void;
-  markAsRead: (id: number) => void;
 }
 
 const NotificationsModal: React.FC<NotificationsModalProps> = ({
   isOpen,
   onRequestClose,
-  notifications,
-  markAllAsRead,
-  markAsRead
 }) => {
   const [view, setView] = useState<'all' | 'unread'>('all');
+  const { notifications, markAllAsRead, markAsRead, markAsUnread } = useNotifications();
 
   const filteredNotifications = view === 'all'
     ? notifications
