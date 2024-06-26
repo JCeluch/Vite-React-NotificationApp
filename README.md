@@ -55,39 +55,3 @@ To run the tests, use:
     npm run test
     # or
     yarn test
-
-## Project Structure
-├── public
-├── src
-│   ├── components
-│   │   ├── Navbar.tsx
-│   │   ├── Notification.tsx
-│   │   ├── NotificationModal.tsx
-│   ├── context
-│   │   ├── NotificationContext.tsx
-│   ├── pages
-│   │   ├── NewFeaturePage.tsx
-│   │   ├── OnHoldPage.tsx
-│   │   ├── RequestPage.tsx
-│   ├── tests
-│   │   ├── Notification.test.tsx
-│   │   ├── NotificationContext.test.tsx
-│   │   ├── OnHoldPage.test.tsx
-│   │   ├── NewFeaturePage.test.tsx
-│   │   ├── RequestPage.test.tsx
-│   │   ├── setupTests.ts
-│   ├── types
-│   │   ├── types.ts
-│   ├── App.tsx
-│   ├── main.tsx
-│   ├── vite-end.d.ts
-│   └── styles
-│       ├── App.module.scss
-│       ├── Navbar.module.scss
-│       ├── Notification.module.scss
-│       └── NotificationModal.module.scss
-├── .gitignore
-├── index.html
-├── package.json
-├── README.md
-└── vite.config.ts
